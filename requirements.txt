@@ -1,0 +1,2 @@
+# Core dependencies are managed in pyproject.toml
+# Development dependencies can be listed here

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "craftacoder"
+version = "0.1.0"
+description = "An AI coding assistant from Craftapit powered by Aider."
+authors = [
+    { name = "Zoltán Csizmazia", email = "info@craftapit.com" },
+]
+license = { text = "MIT" }
+dependencies = [
+    "aider-chat>=0.77.1",
+]
+
+[project.urls]
+Homepage = "https://coder.craftapit.com"
+
+
+[project.scripts]
+craftacoder = "craftacoder.cli.main:main"
