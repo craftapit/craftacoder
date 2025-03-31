@@ -4,6 +4,7 @@ import argparse
 import logging
 from .router_config import configure_router
 from .utils import validate_router_config, format_router_url
+from .token_customizer import setup_token_customization
 
 
 def main():
@@ -49,6 +50,10 @@ def main():
         known_args.router_api_key
     )
     print(f"Router configured with URL: {formatted_url}")
+    
+    # Always enable custom token display
+    logger.debug("Enabling custom token display")
+    setup_token_customization()
 
     try:
         from aider.main import main as aider_main
