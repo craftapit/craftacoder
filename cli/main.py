@@ -8,7 +8,7 @@ from .utils import validate_router_config, format_router_url
 
 def main():
     # Set up logging for debugging
-    logging.basicConfig(level=logging.DEBUG, 
+    logging.basicConfig(level=logging.INFO, 
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logger = logging.getLogger(__name__)
     
