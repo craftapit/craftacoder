@@ -4,7 +4,7 @@ import argparse
 import logging
 from .router_config import configure_router
 from .utils import validate_router_config, format_router_url
-from .token_customizer import setup_token_customization
+from .subscription_reporter import setup_subscription_reporting
 
 
 def main():
@@ -51,9 +51,10 @@ def main():
     )
     print(f"Router configured with URL: {formatted_url}")
     
-    # Always enable custom token display
-    logger.debug("Enabling custom token display")
-    setup_token_customization()
+    # Enable subscription usage reporting with the same router URL and API key
+    logger.debug("Enabling subscription usage reporting")
+    setup_subscription_reporting(formatted_url, known_args.router_api_key)
+    print("Subscription usage reporting enabled")
 
     try:
         from aider.main import main as aider_main
