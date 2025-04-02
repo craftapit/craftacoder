@@ -21,8 +21,6 @@ def get_token_info(router_url, router_api_key):
             logger.debug("Router URL or key not provided")
             return None, None, None, False
 
-        #AI - due to some reasons i have to release the monkey patched version but the api is not ready yet. also i would like to change the statistics to subscription depleted percentage (calculated by the server using used/total as ratio) AI!
-
         # Construct the token usage endpoint from the router URL
         token_usage_endpoint = f"{router_url}/providers/_usage-stats"
         
@@ -39,7 +37,7 @@ def get_token_info(router_url, router_api_key):
             total_tokens = data.get("tokensTotal", 0)
             is_unlimited = data.get("isUnlimited", False) or total_tokens == 0
 
-            # Calculate percentage
+            # Calculate depletion percentage
             if is_unlimited:
                 percentage = 0
             elif total_tokens > 0:
@@ -71,7 +69,7 @@ def create_patched_methods(router_url, router_api_key):
             if is_unlimited:
                 subscription_report = f"Subscription: {format_tokens(used_tokens)} used of unlimited tokens"
             else:
-                subscription_report = f"Subscription: {format_tokens(used_tokens)} used of {format_tokens(total_tokens)} ({percentage:.1f}%)"
+                subscription_report = f"Subscription: {format_tokens(used_tokens)} used of {format_tokens(total_tokens)} ({percentage:.1f}% depleted)"
         else:
             # API call failed, but we still want to show a custom message
             subscription_report = "Subscription: Token information unavailable"
