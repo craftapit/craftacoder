@@ -21,21 +21,23 @@ def get_token_info(router_url, router_api_key):
             logger.debug("Router URL or key not provided")
             return None, None, None, False
 
+        #AI - due to some reasons i have to release the monkey patched version but the api is not ready yet. also i would like to change the statistics to subscription depleted percentage (calculated by the server using used/total as ratio) AI!
+
         # Construct the token usage endpoint from the router URL
-        token_usage_endpoint = f"{router_url}/usage"
+        token_usage_endpoint = f"{router_url}/providers/_usage-stats"
         
         logger.debug(f"Fetching token info from {token_usage_endpoint}")
         response = requests.get(
             token_usage_endpoint,
-            headers={"Authorization": f"Bearer {router_api_key}"},
-            timeout=5
+            headers={"craft-api-key": router_api_key},
+            timeout=15
         )
 
         if response.status_code == 200:
             data = response.json()
-            used_tokens = data.get("used_tokens", 0)
-            total_tokens = data.get("total_tokens", 0)
-            is_unlimited = data.get("is_unlimited", False) or total_tokens == 0
+            used_tokens = data.get("tokensUsed", 0)
+            total_tokens = data.get("tokensTotal", 0)
+            is_unlimited = data.get("isUnlimited", False) or total_tokens == 0
 
             # Calculate percentage
             if is_unlimited:
