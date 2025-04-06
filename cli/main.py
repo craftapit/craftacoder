@@ -7,10 +7,13 @@ from .utils import validate_router_config, format_router_url
 from .subscription_reporter import setup_subscription_reporting
 
 
+# Configure logging with WARNING level by default (less verbose)
+logging.basicConfig(level=logging.WARNING, 
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 def main():
     # Set up logging for debugging
-    logging.basicConfig(level=logging.INFO, 
-                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logger = logging.getLogger(__name__)
     
     logger.debug("Starting craftacoder powered by aider!")
@@ -30,9 +33,20 @@ def main():
         help="API key for the router service",
         default=os.environ.get("CRAFTACODER_ROUTER_API_KEY")
     )
+    parser.add_argument(
+        "--debug-log",
+        action="store_true",
+        help="Enable detailed debug logging",
+        default=False
+    )
 
     # Parse just your arguments first
     known_args, remaining_args = parser.parse_known_args()
+    
+    # Configure logging based on debug flag
+    if known_args.debug_log:
+        logging.getLogger().setLevel(logging.DEBUG)
+        logger.debug("Debug logging enabled")
 
     # Configure the router if needed
     logger = logging.getLogger(__name__)

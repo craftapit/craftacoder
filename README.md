@@ -33,10 +33,6 @@ A wrapper around Aider that provides custom routing capabilities for LLM API cal
    pip install craftacoder
    ```
 
-```bash
-pip install craftacoder
-```
-
 ## Usage
 
 To use Craftacoder, you need to acquire an API key from [coder.craftapit.com](https://coder.craftapit.com).
