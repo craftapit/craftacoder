@@ -58,13 +58,13 @@ You can run Craftacoder using command-line arguments or environment variables.
 #### Using Command-Line Arguments
 
 ```bash
-craftacoder --router-url https://coder.craftapit.com --router-api-key your-api-key [aider arguments]
+craftacoder --router-url https://coder-api.craftapit.com --router-api-key your-api-key [aider arguments]
 ```
 
 #### Using Environment Variables
 
 ```bash
-export CRAFTACODER_ROUTER_URL=https://coder.craftapit.com
+export CRAFTACODER_ROUTER_URL=https://coder-api.craftapit.com
 export CRAFTACODER_ROUTER_API_KEY=your-api-key
 
 craftacoder [aider arguments]
@@ -74,14 +74,14 @@ For PowerShell users:
 
 ```powershell
 # Set environment variables
-$env:CRAFTACODER_ROUTER_URL = "https://coder.craftapit.com"
+$env:CRAFTACODER_ROUTER_URL = "https://coder-api.craftapit.com"
 $env:CRAFTACODER_ROUTER_API_KEY = "your-api-key"
 
 # Run craftacoder
 craftacoder [aider arguments]
 
 # Or use directly with arguments
-craftacoder --router-url https://coder.craftapit.com --router-api-key your-api-key [aider arguments]
+craftacoder --router-url https://coder-api.craftapit.com --router-api-key your-api-key [aider arguments]
 ```
 
 ## Features
